@@ -42,7 +42,8 @@
             <td>{{forloop.counter}}</td>
             <td>{{i.district_name}}</td>
             <td><a href="{% url 'Adminstrator:delDistrict' i.id %}">Delete</a> 
-               <a href="{% url 'Adminstrator:districtupdate' i.id %}">Edit</a> </td>
+                <a href="{% url 'Adminstrator:districtupdate' i.id %}">Edit</a> 
+            </td>
         </tr>
         {% endfor %}
 
