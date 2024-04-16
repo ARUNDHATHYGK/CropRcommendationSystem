@@ -44,10 +44,14 @@ def requestList(request):
     return render(request,"Professor/RequestList.html",{'requestdata':requestdata})
 
 def acceptrequest(request,aid):
-    arequest = tbl_request.objects.get(id=aid)
-    arequest.request_status = 1
-    arequest.save()
-    return render(request,"Professor/HomePage.html")
+    if request.method=="POST":
+        arequest = tbl_request.objects.get(id=aid)
+        arequest.request_reply=request.POST.get('txtname')
+        arequest.request_status = 1
+        arequest.save()
+        return render(request,"Professor/HomePage.html")
+    else:
+        return render(request,"Professor/Reply.html")
 
 def rejectrequest(request,rid):
     rrequest = tbl_request.objects.get(id=rid)
