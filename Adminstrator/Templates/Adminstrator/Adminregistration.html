@@ -1,0 +1,71 @@
+{% extends 'Adminstrator/Header.html' %}
+{% load static %}
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form method="post">
+        {% csrf_token %}
+        <h1 algin="center">Admin Registration</h1>
+        <table  cellpadding="10" cellspacing="0" align="center" border="" >
+         
+            <tr>
+                <td>Name</td>
+                <td><input type="text" name="txtname"  placeholder="Enter Name" required>
+            </tr>
+            <tr>
+                <td>Contact</td>
+                <td><input type="tle" name="txtcontact" ></td>
+            </tr>
+            <tr>
+                <td>Email</td>
+                <td><input type="email" name="txtemail" required></td>
+            </tr>
+            <tr>
+                <td>Password</td>
+                <td><input type="password" name="txtpassword" required></td>
+            </tr>
+            <tr>
+                <td colspan="2" algin="center">
+                <input type="submit" name="btnsave" value="Save">
+                <input type="reset" name="btnsave" value="Cancel">
+            </td>
+            </tr>
+    
+            </table>             
+
+        </form> 
+        <table border="2" align="center" cellpadding="10">
+            <tr>
+                <th>Sl.No</th>
+                <th>Name</th>
+                <th>Contact</th>
+                <th>Email</th>
+                <th>password</th>
+                <th>Action</th>
+            </tr>
+            {% for i in data %}
+            <tr>
+                <td>{{forloop.counter}}</td>
+                <td>{{i.Adminregistration_name}}</td>
+                <td>{{i.Adminregistration_contact}}</td>
+                <td>{{i.Adminregistration_email}}</td>
+                <td>{{i.Adminregistration_password}}</td>
+                <td><a href="{% url 'Adminstrator:delAdminregistration' i.id %}">Delete</a>
+                    <a href="{% url 'Adminstrator:adminregistrationupdate' i.id %}">Edit</a></td>
+            </tr>
+            {% endfor %}
+    
+        </table>
+    </body>
+    </html>  
+    
+    {% endblock content %}
+
+    

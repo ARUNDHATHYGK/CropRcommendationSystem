@@ -1,0 +1,57 @@
+{% extends 'Adminstrator/Header.html' %}
+{% load static %}
+{% block content %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Officer</title>
+</head>
+
+<body>
+    <br>
+    <br>
+
+    {% csrf_token %}
+
+    <table border="2" align="center" cellpadding="10">
+        <tr>
+            <th>Sl.No</th>
+            <th>Name</th>
+            <th>Contact</th>
+            <th>Email</th>
+            <th>Address</th>
+            <th>District</th>
+            <th>Place</th>
+            <th>Photo</th>
+            <th>Proof</th>
+            <th>Action</th>
+        </tr>
+        {% for i in officerdata %}
+        <tr>
+            <td>{{forloop.counter}}</td>
+            <td>{{i.officer_name}}</td>
+            <td>{{i.officer_contact}}</td>
+            <td>{{i.officer_email}}</td>
+            <td>{{i.officer_address}}</td>
+            <td>{{i.place.district.district_name}}</td>
+            <td>{{i.place.place_name}}</td>
+            <td><img src="{{i.officer_photo.url}}" width="150" height="150" alt=""></td>
+            <td><img src="{{i.officer_proof.url}}" width="150" height="150" alt=""></td>
+            <td><a href="{% url 'Adminstrator:acceptofficer' i.id %}">Accept</a>
+                <a href="{% url 'Adminstrator:rejectofficer' i.id %}">Reject</a>
+            </td>
+
+        </tr>
+        {% endfor %}
+
+    </table>
+</body>
+
+</html>
+
+{% endblock content %}

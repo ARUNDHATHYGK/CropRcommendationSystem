@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+</head>
+<body>
+    <form method="post">
+        {% csrf_token %}
+        
+        <h1 align="center">Login</h1>
+
+        <table  cellpadding="10" cellspacing="0" align="center"  border="4">
+            
+            <tr>
+                <td>Email</td>
+                <td><input type="email" name="txt_email" required></td>
+            </tr>
+            <tr>
+                <td>Password</td>
+                <td><input type="password" name="txt_password" required></td>
+            </tr>
+            <tr>
+                <td colspan="2" align="center"><input type="Submit" name="btnlogin" value="Login"></td>
+            </tr>
+        </table>
+    </form>
+    {% if msg %}
+    <script>
+        alert("{{msg}}")
+    </script>
+    {% endif %}
+</body>
+</html>

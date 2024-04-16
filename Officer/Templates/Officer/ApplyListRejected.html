@@ -1,0 +1,43 @@
+{% extends 'Officer/Header.html' %}
+{% load static %}
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ApplyList Rejected </title>
+</head>
+<body>
+    <br>
+    <br>
+    <br>
+    <br>
+    {% csrf_token %}
+
+    <table border="2" align="center" cellpadding="10">
+        <tr>
+            <th>Sl.No</th>
+            <th>Notification</th>
+            <th>User Name</th>
+            <th>Date</th>
+            <th>Action</th>
+
+        </tr>
+        {% for i in applydata %}
+        <tr>
+            <td>{{forloop.counter}}</td>
+            <td>{{i.notification.notification_details}}</td>
+            <td>{{i.user.user_name}}</td>
+            <td>{{i.apply_date}}</td>
+            <td><a href="{% url 'Officer:acceptapply' i.id %}">Accept</a></td>
+
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+
+</html>
+
+{% endblock content %}

@@ -1,0 +1,46 @@
+{% extends 'User/Header.html' %}
+{% load static %}
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Notification</title>
+</head>
+<body>
+    <br><br><br><br><br>
+    {% csrf_token %}
+
+    <table border="2" align="center" cellpadding="10">
+        <tr>
+            <th>Sl.No</th>
+            <th>Date</th>
+            <th>Title</th>
+            <th>Details</th>
+            <th>Due Date</th>
+            <th>Poster</th>
+            <th>Action</th>
+        </tr>
+        {% for i in data %}
+        <tr>
+            <td>{{forloop.counter}}</td>
+            <td>{{i.notification_date}}</td>
+            <td>{{i.notification_title}}</td>
+            <td>{{i.notification_details}}</td>
+            <td>{{i.notification_duedate}}</td>
+            <td><img src="{{i.notification_poster.url}}" width="150" height="150" alt=""></td>
+            <td colspan="2" align="center">
+                    <a class="d-card-button" href="{% url 'User:apply' i.id %}">Apply</a>
+                </td>
+            </tr>           
+        </tr>
+        {% endfor %}
+
+    </table>
+</body>
+
+</html>
+
+{% endblock content %}

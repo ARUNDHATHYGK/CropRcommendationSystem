@@ -1,0 +1,36 @@
+{% extends 'User/Header.html' %}
+{% load static %}
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title >Request</title>
+</head>
+<body>
+    <br><br><br><br><br>
+    <form method="post">
+        {% csrf_token %}
+        <h1 align="center">Request</h1>
+    <table  cellpadding="10" cellspacing="0" align="center" border="" >
+    <tr>
+        <td>Title</td>
+        <td><input type="text" name="txttitle" placeholder="Enter Title" required></td>
+    </tr>
+    <tr>
+        <td>Details</td>
+        <td><textarea name="txtdetails" cols="30" rows="5"></textarea></td>
+    </tr>
+    <tr>
+        <td colspan="2" align="center">
+        <input type="submit" name="btnsubmit" value="Send">
+        </td>
+    </tr>
+    </table>
+</form>
+</body>
+</html>
+
+{% endblock content %}

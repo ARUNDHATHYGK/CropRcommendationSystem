@@ -1,0 +1,51 @@
+{% extends 'User/Header.html' %}
+{% load static %}
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ProfessorList</title>
+</head>
+<body>
+    <br><br><br><br>
+    <form method="post"  enctype="multipart/form-data"></form>
+    {% for i in data %}
+    <div class="container-fluid d-bg-image">
+        <div class="d-profile">
+            <table align="center" style="color: black;" cellpadding="10px" class="d-card">
+                <tr>
+                    <td colspan="2" align="center"><img src="{{i.professor_photo.url}}" alt="" width="150" height="150"></td>
+                </tr>
+                <tr>
+                    
+                    <td align="center">{{i.professor_name}}</td>
+                </tr>
+                <tr>
+                    
+                    <td align="center">{{i.professor_contact}}</td>
+                </tr>
+                <tr>
+                    
+                    <td align="center">{{i.place.place_name}}</td>
+                </tr>
+                <tr>
+                    <td colspan="2" align="center">
+                        <a class="d-card-button" href="{% url 'User:request' i.id %}">Send Request</a>
+                    </td>
+                </tr>
+            </table>
+        
+        </div>
+        
+
+    </div>
+    {% endfor %}
+</form>
+</body>
+
+</html>
+
+{% endblock content %}
