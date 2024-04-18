@@ -16,7 +16,7 @@ urlpatterns = [
     path("ApplyListAccepted/",views.applyListAccepted,name="applyListAccepted"),
     path("ApplyListRejected/",views.applyListRejected,name="applyListRejected"),
 
-    
+    path("logout/",views.logout,name="logout"),
 
 
 ]

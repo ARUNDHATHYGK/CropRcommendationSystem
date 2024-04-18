@@ -96,7 +96,11 @@ def feedback(request):
         tbl_feedback.objects.create(feedback_title=feedbacktitle,feedback_details=feedbackdetails)
         return redirect("User:feedback")
     else:
-        return render(request,"User/Feedback.html",{"data":feedback})         
+        return render(request,"User/Feedback.html",{"data":feedback})  
+
+def logout(request):
+    del request.session["uid"]
+    return redirect("Guest:Login")               
 
 
         

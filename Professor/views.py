@@ -68,5 +68,8 @@ def requestListRejected(request):
     print(requestdata)
     return render(request,"Professor/RequestListRejected.html",{"requestdata":requestdata})
 
+def logout(request):
+    del request.session["pid"]
+    return redirect("Guest:Login")
 
 

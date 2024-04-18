@@ -14,4 +14,6 @@ urlpatterns = [
     path("RequestListAccepted/",views.requestListAccepted,name="requestListAccepted"),
     path("RequestListRejected/",views.requestListRejected,name="requestListRejected"),
 
+    path("logout/",views.logout,name="logout"),
+
 ]

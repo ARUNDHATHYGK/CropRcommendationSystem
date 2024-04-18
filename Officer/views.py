@@ -79,6 +79,9 @@ def applyListRejected(request):
     print(applydata)
     return render(request,"Officer/ApplyListRejected.html",{"applydata":applydata})
 
+def logout(request):
+    del request.session["id"]
+    return redirect("Guest:Login")
 
 
 

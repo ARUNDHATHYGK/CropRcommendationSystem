@@ -16,5 +16,7 @@ urlpatterns = [
     path('ViewApplyList/',views.viewapplyList,name="viewapplyList"),
     path('Feedback/',views.feedback,name="feedback"),
 
+    path("logout/",views.logout,name="logout"),
+
 ]
 
