@@ -80,7 +80,7 @@ def applyListRejected(request):
     return render(request,"Officer/ApplyListRejected.html",{"applydata":applydata})
 
 def logout(request):
-    del request.session["id"]
+    del request.session["oid"]
     return redirect("Guest:Login")
 
 
