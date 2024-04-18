@@ -31,3 +31,24 @@ class tbl_feedback(models.Model):
     feedback_title=models.CharField(max_length=100)
     feedback_date=models.DateField(auto_now_add=True)
     feedback_details=models.CharField(max_length=1000)    
+
+
+
+
+class tbl_predictionHead(models.Model):
+    Nitrogen=models.FloatField(max_length=100)
+    Phosphorus=models.FloatField(max_length=100)
+    Potassium=models.FloatField(max_length=100)
+    Temprature=models.FloatField(max_length=100)
+    Humidity=models.FloatField(max_length=100)
+    Ph=models.FloatField(max_length=100)
+    Rainfall=models.FloatField(max_length=100)
+    Rainfall=models.FloatField(max_length=100)
+    user = models.ForeignKey(tbl_user, on_delete=models.CASCADE)
+    date = models.DateField(auto_now_add=True)
+
+
+
+class tbl_predictionData(models.Model):
+    predictionHead = models.ForeignKey(tbl_predictionHead, on_delete=models.CASCADE)
+    prediction_result=models.CharField(max_length=100,null=True)
