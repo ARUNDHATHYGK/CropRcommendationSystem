@@ -102,6 +102,19 @@ def logout(request):
     del request.session["uid"]
     return redirect("Guest:Login")               
 
+def prediction(request):
+    if request.method=="POST":
+        n=request.POST.get('txt')
+        p=request.POST.get('txt')
+        k=request.POST.get('txt')
+        temperature=request.POST.get('txt')
+        humidity=request.POST.get('txt')
+        ph=request.POST.get('txt')
+        rainfall=request.POST.get('txt')
+        return redirect("User:prediction")
+    else:
+        return render(request,"User/Prediction.html",{"data":prediction})  
+
 
         
 

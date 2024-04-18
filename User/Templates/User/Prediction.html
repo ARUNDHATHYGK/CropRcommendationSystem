@@ -1,0 +1,64 @@
+
+{% extends 'User/Header.html' %}
+{% load static %}
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <br>
+    <br>
+    <br>
+    <br>
+    <form method="post"  enctype="multipart/form-data">
+        {% csrf_token %}
+        
+        <h1 align="center">Predict Now</h1>
+        <br><br>
+        <table  cellpadding="10" cellspacing="0"  align="center" border="2" >
+         
+            <tr>
+                <td>Nitrogen</td>
+                <td><input type="text" name="txt"   required>
+            </tr>
+            <tr>
+                <td>Phosphorus</td>
+                <td><input type="text" name="txt"  required>
+            </tr>
+            <tr>
+                <td>Potassium</td>
+                <td><input type="text" name="txt"  required>
+            </tr>
+            <tr>
+                <td>Temprature</td>
+                <td><input type="text" name="txt"  required>
+            </tr>
+            <tr>
+                <td>Humidity</td>
+                <td><input type="text" name="txt"  required>
+            </tr>
+            <tr>
+                <td>Ph</td>
+                <td><input type="text" name="txt"  required>
+            </tr>
+            <tr>
+                <td>Rainfall</td>
+                <td><input type="text" name="txt"  required>
+            </tr>
+            <tr>
+                <td colspan="2" align="center">
+                    <input type="submit" name="btnsubmit" value="submit">
+                    <input type="reset" name="btncancel" value="cancel">
+                    
+                </td>
+            </tr> 
+            </table>
+</body>
+</html>
+
+{% endblock content %}

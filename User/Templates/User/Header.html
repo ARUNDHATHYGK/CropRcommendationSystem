@@ -44,8 +44,11 @@
             #tab td, #tab th {
             color: #232222 !important;
             }
+            #tab th {
+            background-color: #6b7908 !important;
+            }
             .site-navbar ul li {
-            padding-right: 30px !important;
+            padding-right: 20px !important;
             }
             .logo a span {
             color: #1c1c1b !important;
@@ -77,11 +80,13 @@
                                 <ul>
                                     <li><a class="active" href="{% url 'User:homepage' %}">Home</a></li>
                                     <li><a href="{% url 'User:my_pro' %}">Profile</a></li>
-                                    <li><a href="{% url 'User:professorList' %}">Professor List</a></li>
-                                    <li><a href="{% url 'User:viewrequest' %}">View Request</a></li>
-                                    <li><a href="{% url 'User:viewnotification' %}">View Notification</a></li>
-                                    <li><a href="{% url 'User:viewapplyList' %}">View Apply List</a></li>
+                                    <li><a href="{% url 'User:prediction' %}">Crop Recommendation</a></li>
+                                    <li><a href="{% url 'User:professorList' %}">Professor</a></li>
+                                    <li><a href="{% url 'User:viewrequest' %}">Request</a></li>
+                                    <li><a href="{% url 'User:viewnotification' %}">Notification</a></li>
+                                    <li><a href="{% url 'User:viewapplyList' %}">Apply</a></li>
                                     <li><a href="{% url 'User:complaint' %}">Complaint</a></li>
+                                    <li><a href="{% url 'User:feedback' %}">Feedback</a></li>
                                 </ul>
                                 <button class="nav-toggler">
                                     <span></span>

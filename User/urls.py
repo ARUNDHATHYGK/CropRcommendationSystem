@@ -17,6 +17,10 @@ urlpatterns = [
     path('Feedback/',views.feedback,name="feedback"),
 
     path("logout/",views.logout,name="logout"),
+    path('Prediction/',views.prediction,name="prediction"),
+
+
+
 
 ]
 
