@@ -2,6 +2,8 @@ from django.shortcuts import render,redirect
 from Guest.models import *
 from User.models import *
 from Officer.models import *
+import joblib
+
 
 def homepage(request):
     return render(request,"User/HomePage.html")
@@ -103,20 +105,42 @@ def logout(request):
     return redirect("Guest:Login")               
 
 def prediction(request):
+    userdata=tbl_user.objects.get(id=request.session["uid"])
+    predictionData = tbl_predictionHead.objects.filter(user=userdata)
+
     if request.method=="POST":
-        n=request.POST.get('txt')
-        p=request.POST.get('txt')
-        k=request.POST.get('txt')
-        temperature=request.POST.get('txt')
-        humidity=request.POST.get('txt')
-        ph=request.POST.get('txt')
-        rainfall=request.POST.get('txt')
+        n = request.POST.get('nitrogen')
+        p = request.POST.get('phosphorus')
+        k = request.POST.get('potassium')
+        temperature = request.POST.get('temperature')
+        humidity = request.POST.get('humidity')
+        ph = request.POST.get('ph')
+        rainfall = request.POST.get('rainfall')
+        predictionHead = tbl_predictionHead.objects.create(Nitrogen=n,Phosphorus=p,Potassium=k,Temprature=temperature,Humidity=humidity,Ph=ph,Rainfall=rainfall,user=userdata)
+        pvalue = random_forest(n,p,k,temperature,humidity,ph,rainfall)
+        for i in pvalue:
+            tbl_predictionData.objects.create(predictionHead=predictionHead,prediction_result=i)
+        
         return redirect("User:prediction")
     else:
-        return render(request,"User/Prediction.html",{"data":prediction})  
+        return render(request,"User/Prediction.html",{"data":predictionData})  
+
+def random_forest(n,p,k,temperature,humidity,ph,rainfall):
+   
+    rf = joblib.load('random_forest_model.pkl')
+    sc = joblib.load('standard_scaler.pkl')
+    encoder = joblib.load('label_encodings.pkl')
+    single_instance_features = [[n, p, k, temperature, humidity, ph,rainfall]]
+
+    single_instance_scaled = sc.transform(single_instance_features)
+    prediction = rf.predict(single_instance_scaled)
+    print("Predicted label:", prediction)
+    predicted_crop_name = encoder.inverse_transform(prediction)
+    print("Predicted crop:", predicted_crop_name)
+    return predicted_crop_name
 
 
-        
+ 
 
 
 

@@ -20,44 +20,82 @@
         
         <h1 align="center">Predict Now</h1>
         <br><br>
-        <table  cellpadding="10" cellspacing="0"  align="center" border="2" >
-         
+        <table cellpadding="10" cellspacing="0" align="center" border="2">
             <tr>
                 <td>Nitrogen</td>
-                <td><input type="text" name="txt"   required>
+                <td><input type="text" name="nitrogen" required></td>
             </tr>
             <tr>
                 <td>Phosphorus</td>
-                <td><input type="text" name="txt"  required>
+                <td><input type="text" name="phosphorus" required></td>
             </tr>
             <tr>
                 <td>Potassium</td>
-                <td><input type="text" name="txt"  required>
+                <td><input type="text" name="potassium" required></td>
             </tr>
             <tr>
-                <td>Temprature</td>
-                <td><input type="text" name="txt"  required>
+                <td>Temperature</td>
+                <td><input type="text" name="temperature" required></td>
             </tr>
             <tr>
                 <td>Humidity</td>
-                <td><input type="text" name="txt"  required>
+                <td><input type="text" name="humidity" required></td>
             </tr>
             <tr>
-                <td>Ph</td>
-                <td><input type="text" name="txt"  required>
+                <td>pH</td>
+                <td><input type="text" name="ph" required></td>
             </tr>
             <tr>
                 <td>Rainfall</td>
-                <td><input type="text" name="txt"  required>
+                <td><input type="text" name="rainfall" required></td>
             </tr>
             <tr>
                 <td colspan="2" align="center">
                     <input type="submit" name="btnsubmit" value="submit">
                     <input type="reset" name="btncancel" value="cancel">
-                    
                 </td>
-            </tr> 
-            </table>
+            </tr>
+        </table>
+        
+<br>
+<br>
+<br>
+<br>
+
+<table border="2" align="center" cellpadding="10">
+    <tr>
+        <th>Sl.No</th>
+        <th>Date</th>
+        <th>Nitrogen</th>
+        <th>Phosphorus</th>
+        <th>Potassium</th>
+        <th>Temprature</th>
+        <th>Humidity</th>
+        <th>Ph</th>
+        <th>Rainfall</th>
+        <th>Result</th>
+    </tr>
+    {% for i in data %}
+    <tr>
+        <td>{{ forloop.counter }}</td>
+        <td>{{ i.date }}</td>
+        <td>{{ i.Nitrogen }}</td>
+        <td>{{ i.Phosphorus }}</td>
+        <td>{{ i.Potassium }}</td>
+        <td>{{ i.Temprature }}</td>
+        <td>{{ i.Humidity }}</td>
+        <td>{{ i.Ph }}</td>
+        <td>{{ i.Rainfall }}</td>
+        <td>
+            {% for prediction_data in i.tbl_predictiondata_set.all %}
+                {{ prediction_data.prediction_result }}
+                {% if not forloop.last %}, {% endif %}
+            {% endfor %}
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+
 </body>
 </html>
 
